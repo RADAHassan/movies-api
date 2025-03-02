@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1>{{ movie.title }}</h1>
+    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" class="img-fluid" alt="{{ movie.title }}">
+    <p><strong>Résumé :</strong> {{ movie.overview }}</p>
+    <p><strong>Date de sortie :</strong> {{ movie.release_date }}</p>
+    <p><strong>Note :</strong> {{ movie.vote_average }}/10</p>
+    <a href="{{ path('movies_list') }}" class="btn btn-secondary">Retour</a>
+</div>
+{% endblock %}

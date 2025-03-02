@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche de Films{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="text-center">Recherche de Films</h1>
+
+    <form method="GET" action="{{ path('movies_list') }}" class="mb-4">
+        <input type="text" name="search" value="{{ query }}" class="form-control" placeholder="Rechercher un film...">
+        <button type="submit" class="btn btn-primary mt-2">Rechercher</button>
+    </form>
+
+    <div class="row">
+        {% for movie in movies %}
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <img src="https://image.tmdb.org/t/p/w500{{ movie.poster_path }}" class="card-img-top" alt="{{ movie.title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ movie.title }}</h5>
+                        <p class="card-text">{{ movie.overview|slice(0, 100) }}...</p>
+                        <a href="{{ path('movie_detail', { id: movie.id }) }}" class="btn btn-info">Détails</a>
+                    </div>
+                </div>
+            </div>
+        {% else %}
+            <p class="text-center">Aucun film trouvé.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
